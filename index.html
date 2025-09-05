@@ -3,14 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Year Predictor Pro</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Ultimate Year Predictor Pro - Fun Future Predictions Generator</title>
+    <meta name="description" content="Generate hilarious and entertaining predictions for any year! Choose from multiple themes and prediction modes for endless fun.">
+    <meta name="keywords" content="year predictor, future predictions, fun generator, entertainment, future forecast">
+    <meta name="author" content="Ultimate Year Predictor Pro">
+    <meta property="og:title" content="Ultimate Year Predictor Pro">
+    <meta property="og:description" content="Generate hilarious and entertaining predictions for any year!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/year-predictor">
+    <meta property="og:image" content="https://yourdomain.com/year-predictor-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔮</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔮</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
-        * {
+        /* CSS Reset */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #00ccff;
+            --background-color: rgba(10, 15, 30, 0.9);
+            --text-color: #00ff00;
+            --card-bg: rgba(0, 30, 60, 0.7);
+            --card-border: rgba(0, 150, 255, 0.5);
+            --shadow-color: rgba(0, 255, 255, 0.4);
         }
         
         body {
@@ -35,6 +57,21 @@
         body.vaporwave {
             background: linear-gradient(135deg, #ff00ff, #4900ff, #00bfff);
             color: #ffffff;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #000;
+            color: #fff;
+            padding: 8px;
+            z-index: 100;
+            text-decoration: none;
+        }
+        
+        .skip-link:focus {
+            top: 0;
         }
         
         .container {
@@ -68,12 +105,24 @@
         }
         
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #00ffcc;
             text-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
             margin-bottom: 15px;
             letter-spacing: 2px;
             font-family: 'Courier New', monospace;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
         }
         
         body.retro-terminal h1 {
@@ -92,6 +141,12 @@
             margin-bottom: 10px;
         }
         
+        @media (max-width: 480px) {
+            .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+        
         body.retro-terminal .subtitle {
             color: #00ff00;
         }
@@ -106,6 +161,12 @@
             margin: 0 auto 25px;
             font-size: 1.1rem;
             color: #a0e0ff;
+        }
+        
+        @media (max-width: 480px) {
+            .description {
+                font-size: 1rem;
+            }
         }
         
         body.retro-terminal .description {
@@ -156,6 +217,12 @@
             text-align: center;
         }
         
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1.2rem;
+            }
+        }
+        
         body.retro-terminal .section-title {
             color: #00ff00;
         }
@@ -174,6 +241,12 @@
             font-size: 1.1rem;
             margin-bottom: 8px;
             color: #88ffdd;
+        }
+        
+        @media (max-width: 480px) {
+            label {
+                font-size: 1rem;
+            }
         }
         
         body.retro-terminal label {
@@ -197,6 +270,12 @@
             transition: all 0.5s ease;
         }
         
+        input:focus, select:focus {
+            outline: none;
+            border-color: #00ffcc;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+        }
+        
         body.retro-terminal input,
         body.retro-terminal select {
             background: #000;
@@ -204,11 +283,23 @@
             color: #00ff00;
         }
         
+        body.retro-terminal input:focus,
+        body.retro-terminal select:focus {
+            border-color: #00ff00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+        }
+        
         body.vaporwave input,
         body.vaporwave select {
             background: rgba(0, 0, 0, 0.7);
             border: 2px solid #ff00ff;
             color: #ffffff;
+        }
+        
+        body.vaporwave input:focus,
+        body.vaporwave select:focus {
+            border-color: #00ffff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
         }
         
         .checkbox-group {
@@ -237,6 +328,18 @@
             margin-top: 20px;
             box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
             font-family: 'Courier New', monospace;
+        }
+        
+        button:focus {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+        }
+        
+        @media (max-width: 480px) {
+            button {
+                padding: 12px 20px;
+                font-size: 1.1rem;
+            }
         }
         
         body.retro-terminal button {
@@ -305,6 +408,14 @@
             gap: 10px;
         }
         
+        @media (max-width: 480px) {
+            #loading {
+                font-size: 1.1rem;
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
         body.retro-terminal #loading {
             color: #00ff00;
         }
@@ -368,6 +479,13 @@
             transition: all 0.5s ease;
         }
         
+        @media (max-width: 480px) {
+            #result {
+                font-size: 1.2rem;
+                padding: 15px;
+            }
+        }
+        
         body.retro-terminal #result {
             background: #000;
             border: 1px solid #00ff00;
@@ -389,6 +507,12 @@
             color: #ff6699;
             margin-top: 10px;
             font-size: 1.2rem;
+        }
+        
+        @media (max-width: 480px) {
+            .fortune {
+                font-size: 1rem;
+            }
         }
         
         body.retro-terminal .fortune {
@@ -418,6 +542,18 @@
             display: flex;
             align-items: center;
             gap: 8px;
+        }
+        
+        .action-btn:focus {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+        }
+        
+        @media (max-width: 480px) {
+            .action-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
         }
         
         .replay-btn {
@@ -484,6 +620,12 @@
             color: #ffcc00;
             margin-bottom: 15px;
             text-align: center;
+        }
+        
+        @media (max-width: 480px) {
+            .history-title {
+                font-size: 1.2rem;
+            }
         }
         
         body.retro-terminal .history-title {
@@ -559,6 +701,27 @@
             transition: all 0.3s;
             font-family: 'Courier New', monospace;
             min-width: 120px;
+        }
+        
+        .mode-btn:focus {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .mode-btn {
+                min-width: 100px;
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .mode-btn {
+                min-width: 80px;
+                padding: 6px;
+                font-size: 0.8rem;
+            }
         }
         
         body.retro-terminal .mode-btn {
@@ -694,6 +857,7 @@
             display: flex;
             gap: 10px;
             margin-top: 15px;
+            flex-wrap: wrap;
         }
         
         .theme-btn {
@@ -703,6 +867,11 @@
             cursor: pointer;
             font-family: 'Courier New', monospace;
             transition: all 0.3s ease;
+        }
+        
+        .theme-btn:focus {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
         }
         
         .theme-default {
@@ -820,6 +989,11 @@
             transition: all 0.3s ease;
         }
         
+        .alert-button:focus {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+        }
+        
         .alert-confirm {
             background: linear-gradient(to right, #00ffcc, #00ccff);
             color: #003333;
@@ -873,35 +1047,82 @@
         body.vaporwave .notification-message {
             color: #ffccff;
         }
+        
+        /* Loading animation for better perceived performance */
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+        
+        .loading-pulse {
+            animation: pulse 1.5s infinite;
+        }
+        
+        /* High contrast mode for accessibility */
+        @media (prefers-contrast: high) {
+            body {
+                background: #000 !important;
+                color: #fff !important;
+            }
+            
+            .container {
+                background: #000 !important;
+                border: 2px solid #fff !important;
+            }
+            
+            h1, .subtitle, .description, label {
+                color: #fff !important;
+                text-shadow: 0 0 5px #fff !important;
+            }
+            
+            button, .action-btn, .mode-btn, .theme-btn {
+                background: #000 !important;
+                color: #fff !important;
+                border: 2px solid #fff !important;
+            }
+        }
+        
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <div class="container">
         <header>
-            <h1><i class="fas fa-crystal-ball"></i> Ultimate Year Predictor Pro</h1>
+            <h1><i class="fas fa-crystal-ball" aria-hidden="true"></i> Ultimate Year Predictor Pro</h1>
             <p class="subtitle">Now with new prediction modes and enhanced sharing!</p>
             <p class="description">Enter any year and get a completely random prediction! Watch it glitch out as it appears.</p>
         </header>
         
-        <main>
+        <main id="main-content">
             <div class="control-panel">
                 <div class="input-section">
                     <h2 class="section-title">Input Settings</h2>
                     
                     <div class="input-group">
                         <label for="yearInput">Enter current year:</label>
-                        <input type="number" id="yearInput" placeholder="e.g., 2023" min="0" max="9999">
+                        <input type="number" id="yearInput" placeholder="e.g., 2023" min="0" max="9999" aria-describedby="yearHelp">
+                        <div id="yearHelp" style="font-size: 0.9rem; color: #88aacc;">Enter any year between 0 and 9999</div>
                     </div>
                     
                     <div class="input-group">
                         <label for="predictionMode">Prediction Mode:</label>
-                        <div class="mode-buttons">
-                            <div class="mode-btn active" data-mode="funny">Funny</div>
-                            <div class="mode-btn" data-mode="sci-fi">Sci-Fi</div>
-                            <div class="mode-btn" data-mode="historical">Historical</div>
-                            <div class="mode-btn" data-mode="absurd">Absurd/Meme</div>
-                            <div class="mode-btn" data-mode="apocalypse">Apocalypse</div>
-                            <div class="mode-btn" data-mode="wholesome">Wholesome</div>
+                        <div class="mode-buttons" role="group" aria-label="Prediction mode selection">
+                            <div class="mode-btn active" data-mode="funny" role="button" tabindex="0" aria-pressed="true">Funny</div>
+                            <div class="mode-btn" data-mode="sci-fi" role="button" tabindex="0" aria-pressed="false">Sci-Fi</div>
+                            <div class="mode-btn" data-mode="historical" role="button" tabindex="0" aria-pressed="false">Historical</div>
+                            <div class="mode-btn" data-mode="absurd" role="button" tabindex="0" aria-pressed="false">Absurd/Meme</div>
+                            <div class="mode-btn" data-mode="apocalypse" role="button" tabindex="0" aria-pressed="false">Apocalypse</div>
+                            <div class="mode-btn" data-mode="wholesome" role="button" tabindex="0" aria-pressed="false">Wholesome</div>
                         </div>
                     </div>
                 </div>
@@ -910,13 +1131,13 @@
                     <h2 class="section-title">Options</h2>
                     
                     <div class="checkbox-group">
-                        <input type="checkbox" id="soundEffects" checked>
+                        <input type="checkbox" id="soundEffects" checked aria-checked="true">
                         <label for="soundEffects">Enable Sound Effects</label>
                     </div>
                     
-                    <div class="checkbox-group">
+                    <div class="input-group sound-pack">
                         <label for="soundPack">Sound Pack:</label>
-                        <select id="soundPack">
+                        <select id="soundPack" aria-label="Select sound effect pack">
                             <option value="retro">Retro Beeps</option>
                             <option value="glitch">Glitchy Static</option>
                             <option value="mystical">Mystical Chimes</option>
@@ -924,16 +1145,16 @@
                     </div>
                     
                     <div class="checkbox-group">
-                        <input type="checkbox" id="saveHistory" checked>
+                        <input type="checkbox" id="saveHistory" checked aria-checked="true">
                         <label for="saveHistory">Save Prediction History</label>
                     </div>
                     
                     <div class="checkbox-group">
-                        <input type="checkbox" id="glitchEffect" checked>
+                        <input type="checkbox" id="glitchEffect" checked aria-checked="true">
                         <label for="glitchEffect">Enable Glitch Effect</label>
                     </div>
                     
-                    <div class="theme-buttons">
+                    <div class="theme-buttons" role="group" aria-label="Theme selection">
                         <button class="theme-btn theme-default" data-theme="default">Default</button>
                         <button class="theme-btn theme-retro" data-theme="retro">Retro</button>
                         <button class="theme-btn theme-vaporwave" data-theme="vaporwave">Vaporwave</button>
@@ -941,11 +1162,11 @@
                 </div>
             </div>
             
-            <button id="predictBtn">
-                <i class="fas fa-bolt"></i> Generate Prediction
+            <button id="predictBtn" aria-label="Generate prediction">
+                <i class="fas fa-bolt" aria-hidden="true"></i> Generate Prediction
             </button>
             
-            <div class="decoration">
+            <div class="decoration" aria-hidden="true">
                 <div class="circle"></div>
                 <div class="circle"></div>
                 <div class="circle"></div>
@@ -954,29 +1175,29 @@
             </div>
             
             <div class="loading-container">
-                <div id="loading">Ready to predict... <span class="emoji">🔮</span></div>
+                <div id="loading" aria-live="polite">Ready to predict... <span class="emoji" aria-hidden="true">🔮</span></div>
                 <div class="progress-bar">
-                    <div class="progress" id="progress"></div>
+                    <div class="progress" id="progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
             
-            <div id="result">Your prediction will appear here...</div>
+            <div id="result" aria-live="polite">Your prediction will appear here...</div>
             
             <div class="action-buttons" id="actionButtons" style="display: none;">
-                <button class="action-btn replay-btn" id="replayBtn">
-                    <i class="fas fa-redo"></i> Predict Again
+                <button class="action-btn replay-btn" id="replayBtn" aria-label="Generate another prediction">
+                    <i class="fas fa-redo" aria-hidden="true"></i> Predict Again
                 </button>
-                <button class="action-btn share-btn" id="shareBtn">
-                    <i class="fas fa-share-alt"></i> Share Text
+                <button class="action-btn share-btn" id="shareBtn" aria-label="Share prediction as text">
+                    <i class="fas fa-share-alt" aria-hidden="true"></i> Share Text
                 </button>
-                <button class="action-btn image-btn" id="imageBtn">
-                    <i class="fas fa-image"></i> Copy as Image
+                <button class="action-btn image-btn" id="imageBtn" aria-label="Copy prediction as image">
+                    <i class="fas fa-image" aria-hidden="true"></i> Copy as Image
                 </button>
             </div>
             
             <div class="history-container">
                 <h2 class="history-title">Prediction History</h2>
-                <div id="history">
+                <div id="history" aria-label="Prediction history">
                     <p class="history-item">No predictions yet. Generate one to see it here!</p>
                 </div>
             </div>
@@ -988,7 +1209,7 @@
     </div>
 
     <!-- Custom Alert Box -->
-    <div class="alert-overlay" id="alertOverlay">
+    <div class="alert-overlay" id="alertOverlay" role="alertdialog" aria-modal="true" aria-labelledby="alertTitle" aria-describedby="alertMessage">
         <div class="alert-box">
             <h3 class="alert-title" id="alertTitle">Alert</h3>
             <p class="alert-message" id="alertMessage">This is an alert message.</p>
@@ -999,12 +1220,20 @@
     </div>
 
     <!-- Notification Box -->
-    <div class="notification" id="notification">
+    <div class="notification" id="notification" role="status" aria-live="polite">
         <p class="notification-message" id="notificationMessage">Notification message</p>
     </div>
 
     <script>
+        // Preload function for better performance
+        function preloadResources() {
+            // Preload external resources if any
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
+            // Preload resources
+            preloadResources();
+            
             const yearInput = document.getElementById('yearInput');
             const predictBtn = document.getElementById('predictBtn');
             const loadingElement = document.getElementById('loading');
@@ -1024,8 +1253,10 @@
             const notification = document.getElementById('notification');
             const notificationMessage = document.getElementById('notificationMessage');
             
-            // Set current year as placeholder
-            yearInput.placeholder = `e.g., ${new Date().getFullYear()}`;
+            // Set current year as placeholder and default value
+            const currentYear = new Date().getFullYear();
+            yearInput.placeholder = `e.g., ${currentYear}`;
+            yearInput.value = currentYear;
             
             // Prediction modes
             let currentMode = 'funny';
@@ -1215,9 +1446,21 @@
             // Set up mode buttons
             modeButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    modeButtons.forEach(btn => btn.classList.remove('active'));
+                    modeButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-pressed', 'false');
+                    });
                     this.classList.add('active');
+                    this.setAttribute('aria-pressed', 'true');
                     currentMode = this.getAttribute('data-mode');
+                });
+                
+                // Add keyboard support for mode buttons
+                button.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
                 });
             });
             
@@ -1229,14 +1472,30 @@
                     if (theme !== 'default') {
                         document.body.classList.add(theme + '-terminal');
                     }
+                    
+                    // Update theme preference in localStorage
+                    localStorage.setItem('themePreference', theme);
                 });
             });
+            
+            // Load saved theme preference if exists
+            const savedTheme = localStorage.getItem('themePreference');
+            if (savedTheme && savedTheme !== 'default') {
+                document.body.classList.add(savedTheme + '-terminal');
+                
+                // Set the active state for the theme button
+                themeButtons.forEach(btn => {
+                    if (btn.getAttribute('data-theme') === savedTheme) {
+                        btn.focus();
+                    }
+                });
+            }
             
             // Replay button
             replayBtn.addEventListener('click', function() {
                 resultElement.textContent = "Your prediction will appear here...";
                 actionButtons.style.display = 'none';
-                yearInput.value = '';
+                yearInput.value = currentYear;
                 yearInput.focus();
             });
             
@@ -1260,14 +1519,25 @@
             
             // Image button
             imageBtn.addEventListener('click', function() {
+                // Show loading state
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating Image...';
+                this.disabled = true;
+                
                 html2canvas(resultElement).then(canvas => {
                     canvas.toBlob(function(blob) {
                         const item = new ClipboardItem({ "image/png": blob });
                         navigator.clipboard.write([item]).then(function() {
                             showNotification('Prediction copied as image to clipboard!');
+                            // Restore button state
+                            imageBtn.innerHTML = originalText;
+                            imageBtn.disabled = false;
                         }, function(error) {
                             console.error('Could not copy image: ', error);
                             showAlert('Image Copy Failed', 'Failed to copy image to clipboard. Try using a different browser.');
+                            // Restore button state
+                            imageBtn.innerHTML = originalText;
+                            imageBtn.disabled = false;
                         });
                     });
                 });
@@ -1278,6 +1548,7 @@
                 alertTitle.textContent = title;
                 alertMessage.textContent = message;
                 alertOverlay.classList.add('active');
+                alertConfirm.focus();
                 
                 // Play alert sound
                 playSound('glitch');
@@ -1302,15 +1573,43 @@
                 alertOverlay.classList.remove('active');
             });
             
+            // Also close alert when clicking outside
+            alertOverlay.addEventListener('click', function(e) {
+                if (e.target === alertOverlay) {
+                    alertOverlay.classList.remove('active');
+                }
+            });
+            
+            // Close alert with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && alertOverlay.classList.contains('active')) {
+                    alertOverlay.classList.remove('active');
+                }
+            });
+            
             function copyToClipboard(text) {
+                // Fallback method for copying to clipboard
                 const textarea = document.createElement('textarea');
                 textarea.value = text;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'absolute';
+                textarea.style.left = '-9999px';
                 document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
                 
-                showNotification('Prediction copied to clipboard!');
+                // Select and copy
+                textarea.select();
+                let successful = false;
+                
+                try {
+                    successful = document.execCommand('copy');
+                    showNotification('Prediction copied to clipboard!');
+                } catch (err) {
+                    console.error('Failed to copy text: ', err);
+                    showAlert('Copy Failed', 'Failed to copy text to clipboard. Please try again.');
+                }
+                
+                document.body.removeChild(textarea);
+                return successful;
             }
             
             function playSound(effect) {
@@ -1410,6 +1709,14 @@
                 
                 if(!input) {
                     showAlert('Input Required', 'Please enter a year first!');
+                    yearInput.focus();
+                    return;
+                }
+                
+                const yearNum = parseInt(input);
+                if (isNaN(yearNum) || yearNum < 0 || yearNum > 9999) {
+                    showAlert('Invalid Year', 'Please enter a valid year between 0 and 9999!');
+                    yearInput.focus();
                     return;
                 }
                 
@@ -1429,13 +1736,19 @@
                 
                 // Clear previous results
                 resultElement.textContent = "";
+                actionButtons.style.display = 'none';
                 
                 // Show loading animation
                 let progress = 0;
+                progressElement.style.width = '0%';
+                progressElement.setAttribute('aria-valuenow', '0');
+                loadingElement.classList.add('loading-pulse');
+                
                 const interval = setInterval(() => {
                     progress += Math.random() * 15;
                     if (progress > 100) progress = 100;
                     progressElement.style.width = `${progress}%`;
+                    progressElement.setAttribute('aria-valuenow', progress);
                     
                     // Change loading message every few increments
                     if (Math.random() < 0.2) {
@@ -1446,6 +1759,7 @@
                     
                     if (progress === 100) {
                         clearInterval(interval);
+                        loadingElement.classList.remove('loading-pulse');
                         
                         // Show the "prediction" with typewriter effect
                         const predictionList = predictions[currentMode];
@@ -1530,7 +1844,40 @@
                 if (historyElement.children.length > 10) {
                     historyElement.removeChild(historyElement.lastChild);
                 }
+                
+                // Save history to localStorage
+                if (document.getElementById('saveHistory').checked) {
+                    const historyData = [];
+                    historyElement.querySelectorAll('.history-item').forEach(item => {
+                        historyData.push(item.textContent);
+                    });
+                    localStorage.setItem('predictionHistory', JSON.stringify(historyData));
+                }
             }
+            
+            // Load history from localStorage if available
+            function loadHistory() {
+                const savedHistory = localStorage.getItem('predictionHistory');
+                if (savedHistory) {
+                    try {
+                        const historyData = JSON.parse(savedHistory);
+                        if (historyData.length > 0) {
+                            historyElement.innerHTML = '';
+                            historyData.forEach(item => {
+                                const historyItem = document.createElement('p');
+                                historyItem.className = 'history-item';
+                                historyItem.textContent = item;
+                                historyElement.appendChild(historyItem);
+                            });
+                        }
+                    } catch (e) {
+                        console.error('Error loading history:', e);
+                    }
+                }
+            }
+            
+            // Load history on page load
+            loadHistory();
             
             // Event listeners
             predictBtn.addEventListener('click', predictYear);
@@ -1557,6 +1904,9 @@
                     }, 500);
                 }
             });
+            
+            // Initialize with focus on year input
+            yearInput.focus();
         });
     </script>
 </body>
