@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Year Predictor Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
+            color: #00ff00;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.6;
+            transition: all 0.5s ease;
+        }
+        
+        body.retro-terminal {
+            background: #000;
+            color: #00ff00;
+        }
+        
+        body.vaporwave {
+            background: linear-gradient(135deg, #ff00ff, #4900ff, #00bfff);
+            color: #ffffff;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(10, 15, 30, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+            border: 2px solid rgba(0, 255, 255, 0.7);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        body.retro-terminal .container {
+            background: #000;
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+        }
+        
+        body.vaporwave .container {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #ff00ff;
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.7);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: #00ffcc;
+            text-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body.retro-terminal h1 {
+            color: #00ff00;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+        }
+        
+        body.vaporwave h1 {
+            color: #ff00ff;
+            text-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #88ffdd;
+            margin-bottom: 10px;
+        }
+        
+        body.retro-terminal .subtitle {
+            color: #00ff00;
+        }
+        
+        body.vaporwave .subtitle {
+            color: #00ffff;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+        }
+        
+        .description {
+            max-width: 700px;
+            margin: 0 auto 25px;
+            font-size: 1.1rem;
+            color: #a0e0ff;
+        }
+        
+        body.retro-terminal .description {
+            color: #00ff00;
+        }
+        
+        body.vaporwave .description {
+            color: #ffccff;
+        }
+        
+        .control-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .control-panel {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .input-section, .options-section {
+            background: rgba(0, 30, 60, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(0, 150, 255, 0.5);
+            transition: all 0.5s ease;
+        }
+        
+        body.retro-terminal .input-section, 
+        body.retro-terminal .options-section {
+            background: rgba(0, 20, 0, 0.7);
+            border: 1px solid #00ff00;
+        }
+        
+        body.vaporwave .input-section,
+        body.vaporwave .options-section {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #ff00ff;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: #ffcc00;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        body.retro-terminal .section-title {
+            color: #00ff00;
+        }
+        
+        body.vaporwave .section-title {
+            color: #ff00ff;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+        
+        label {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #88ffdd;
+        }
+        
+        body.retro-terminal label {
+            color: #00ff00;
+        }
+        
+        body.vaporwave label {
+            color: #00ffff;
+        }
+        
+        input, select {
+            background: rgba(0, 40, 80, 0.9);
+            border: 2px solid #00aaff;
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: #ffffff;
+            font-size: 1.1rem;
+            width: 100%;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 5px;
+            transition: all 0.5s ease;
+        }
+        
+        body.retro-terminal input,
+        body.retro-terminal select {
+            background: #000;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+        }
+        
+        body.vaporwave input,
+        body.vaporwave select {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #ff00ff;
+            color: #ffffff;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        button {
+            background: linear-gradient(to right, #00ffcc, #00ccff);
+            color: #003333;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+            font-family: 'Courier New', monospace;
+        }
+        
+        body.retro-terminal button {
+            background: #000;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+        }
+        
+        body.vaporwave button {
+            background: linear-gradient(to right, #ff00ff, #00ffff);
+            color: #000;
+            border: none;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.7);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.8);
+        }
+        
+        body.retro-terminal button:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.9);
+        }
+        
+        body.vaporwave button:hover {
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.9);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        .loading-container {
+            min-height: 120px;
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(0, 30, 60, 0.8);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 200, 255, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+        }
+        
+        body.retro-terminal .loading-container {
+            background: #000;
+            border: 1px solid #00ff00;
+        }
+        
+        body.vaporwave .loading-container {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #ff00ff;
+        }
+        
+        #loading {
+            font-size: 1.3rem;
+            color: #00ffcc;
+            text-align: center;
+            min-height: 40px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        body.retro-terminal #loading {
+            color: #00ff00;
+        }
+        
+        body.vaporwave #loading {
+            color: #ff00ff;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            max-width: 500px;
+            height: 25px;
+            background: rgba(0, 40, 80, 0.8);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 200, 255, 0.4);
+            transition: all 0.5s ease;
+        }
+        
+        body.retro-terminal .progress-bar {
+            background: #000;
+            border: 1px solid #00ff00;
+        }
+        
+        body.vaporwave .progress-bar {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #ff00ff;
+        }
+        
+        .progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, #00ffcc, #00ccff);
+            border-radius: 12px;
+            transition: width 0.5s ease;
+        }
+        
+        body.retro-terminal .progress {
+            background: #00ff00;
+        }
+        
+        body.vaporwave .progress {
+            background: linear-gradient(to right, #ff00ff, #00ffff);
+        }
+        
+        #result {
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 30, 60, 0.8);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 200, 255, 0.4);
+            margin-top: 25px;
+            color: #ffcc00;
+            text-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: all 0.5s ease;
+        }
+        
+        body.retro-terminal #result {
+            background: #000;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+        }
+        
+        body.vaporwave #result {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #ff00ff;
+            color: #ffccff;
+        }
+        
+        .result-text {
+            margin-bottom: 15px;
+        }
+        
+        .fortune {
+            font-style: italic;
+            color: #ff6699;
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
+        
+        body.retro-terminal .fortune {
+            color: #00ff00;
+        }
+        
+        body.vaporwave .fortune {
+            color: #00ffff;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .replay-btn {
+            background: linear-gradient(to right, #00ffcc, #00ccff);
+            color: #003333;
+        }
+        
+        .share-btn {
+            background: linear-gradient(to right, #ff9966, #ff5e62);
+            color: white;
+        }
+        
+        .image-btn {
+            background: linear-gradient(to right, #9966cc, #663399);
+            color: white;
+        }
+        
+        .decoration {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            opacity: 0.7;
+        }
+        
+        .circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #00ffcc;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
+        }
+        
+        body.retro-terminal .circle {
+            background: #00ff00;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+        }
+        
+        body.vaporwave .circle {
+            background: #ff00ff;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.7);
+        }
+        
+        .history-container {
+            margin-top: 30px;
+            background: rgba(0, 30, 60, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(0, 150, 255, 0.5);
+            transition: all 0.5s ease;
+        }
+        
+        body.retro-terminal .history-container {
+            background: rgba(0, 20, 0, 0.7);
+            border: 1px solid #00ff00;
+        }
+        
+        body.vaporwave .history-container {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #ff00ff;
+        }
+        
+        .history-title {
+            font-size: 1.4rem;
+            color: #ffcc00;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        body.retro-terminal .history-title {
+            color: #00ff00;
+        }
+        
+        body.vaporwave .history-title {
+            color: #ff00ff;
+        }
+        
+        #history {
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            background: rgba(0, 40, 80, 0.6);
+            border-radius: 10px;
+            transition: all 0.5s ease;
+        }
+        
+        body.retro-terminal #history {
+            background: #000;
+        }
+        
+        body.vaporwave #history {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .history-item {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-family: 'Courier New', monospace;
+        }
+        
+        body.retro-terminal .history-item {
+            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+        }
+        
+        body.vaporwave .history-item {
+            border-bottom: 1px solid rgba(255, 0, 255, 0.2);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #88aacc;
+        }
+        
+        body.retro-terminal footer {
+            color: #00ff00;
+        }
+        
+        body.vaporwave footer {
+            color: #ffccff;
+        }
+        
+        .mode-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .mode-btn {
+            flex: 1;
+            padding: 10px;
+            background: rgba(0, 60, 120, 0.7);
+            border: 1px solid #00aaff;
+            border-radius: 8px;
+            color: #ffffff;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+            min-width: 120px;
+        }
+        
+        body.retro-terminal .mode-btn {
+            background: #000;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+        }
+        
+        body.vaporwave .mode-btn {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #ff00ff;
+            color: #ffffff;
+        }
+        
+        .mode-btn.active {
+            background: linear-gradient(to right, #00aaff, #0077cc);
+            box-shadow: 0 0 10px rgba(0, 170, 255, 0.7);
+        }
+        
+        body.retro-terminal .mode-btn.active {
+            background: #00ff00;
+            color: #000;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+        }
+        
+        body.vaporwave .mode-btn.active {
+            background: linear-gradient(to right, #ff00ff, #00ffff);
+            color: #000;
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+        }
+        
+        .mode-btn:hover {
+            background: rgba(0, 80, 160, 0.8);
+        }
+        
+        body.retro-terminal .mode-btn:hover {
+            background: rgba(0, 255, 0, 0.3);
+        }
+        
+        body.vaporwave .mode-btn:hover {
+            background: rgba(255, 0, 255, 0.3);
+        }
+        
+        /* Glitch effect styles */
+        .glitch-text {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch-text::before {
+            animation: glitch-effect 3s infinite;
+            color: #ff00ff;
+            z-index: -1;
+            left: 2px;
+            text-shadow: -2px 0 #ff00ff;
+            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+        }
+        
+        .glitch-text::after {
+            animation: glitch-effect 2s infinite;
+            color: #00ffff;
+            z-index: -2;
+            left: -2px;
+            text-shadow: -2px 0 #00ffff;
+            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+        }
+        
+        @keyframes glitch-effect {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 0.15em solid #00ff00;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.15em;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #00ff00; }
+        }
+        
+        .emoji {
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .theme-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .theme-btn {
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-default {
+            background: linear-gradient(to right, #00ffcc, #00ccff);
+            color: #003333;
+        }
+        
+        .theme-retro {
+            background: #000;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+        }
+        
+        .theme-vaporwave {
+            background: linear-gradient(to right, #ff00ff, #00ffff);
+            color: #000;
+        }
+        
+        .sound-pack {
+            margin-top: 10px;
+        }
+        
+        /* Custom Alert Styles */
+        .alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .alert-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .alert-box {
+            background: rgba(10, 15, 30, 0.95);
+            border: 2px solid #00ffcc;
+            border-radius: 15px;
+            padding: 25px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+        }
+        
+        .alert-overlay.active .alert-box {
+            transform: scale(1);
+        }
+        
+        body.retro-terminal .alert-box {
+            background: #000;
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+        }
+        
+        body.vaporwave .alert-box {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #ff00ff;
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.7);
+        }
+        
+        .alert-title {
+            font-size: 1.5rem;
+            color: #00ffcc;
+            margin-bottom: 15px;
+        }
+        
+        body.retro-terminal .alert-title {
+            color: #00ff00;
+        }
+        
+        body.vaporwave .alert-title {
+            color: #ff00ff;
+        }
+        
+        .alert-message {
+            font-size: 1.1rem;
+            color: #a0e0ff;
+            margin-bottom: 25px;
+        }
+        
+        body.retro-terminal .alert-message {
+            color: #00ff00;
+        }
+        
+        body.vaporwave .alert-message {
+            color: #ffccff;
+        }
+        
+        .alert-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .alert-button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .alert-confirm {
+            background: linear-gradient(to right, #00ffcc, #00ccff);
+            color: #003333;
+        }
+        
+        .alert-cancel {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(10, 15, 30, 0.9);
+            border: 2px solid #00ffcc;
+            border-radius: 8px;
+            padding: 15px;
+            max-width: 300px;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.active {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        body.retro-terminal .notification {
+            background: #000;
+            border: 2px solid #00ff00;
+        }
+        
+        body.vaporwave .notification {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #ff00ff;
+        }
+        
+        .notification-message {
+            color: #a0e0ff;
+            font-size: 1rem;
+        }
+        
+        body.retro-terminal .notification-message {
+            color: #00ff00;
+        }
+        
+        body.vaporwave .notification-message {
+            color: #ffccff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-crystal-ball"></i> Ultimate Year Predictor Pro</h1>
+            <p class="subtitle">Now with new prediction modes and enhanced sharing!</p>
+            <p class="description">Enter any year and get a completely random prediction! Watch it glitch out as it appears.</p>
+        </header>
+        
+        <main>
+            <div class="control-panel">
+                <div class="input-section">
+                    <h2 class="section-title">Input Settings</h2>
+                    
+                    <div class="input-group">
+                        <label for="yearInput">Enter current year:</label>
+                        <input type="number" id="yearInput" placeholder="e.g., 2023" min="0" max="9999">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="predictionMode">Prediction Mode:</label>
+                        <div class="mode-buttons">
+                            <div class="mode-btn active" data-mode="funny">Funny</div>
+                            <div class="mode-btn" data-mode="sci-fi">Sci-Fi</div>
+                            <div class="mode-btn" data-mode="historical">Historical</div>
+                            <div class="mode-btn" data-mode="absurd">Absurd/Meme</div>
+                            <div class="mode-btn" data-mode="apocalypse">Apocalypse</div>
+                            <div class="mode-btn" data-mode="wholesome">Wholesome</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="options-section">
+                    <h2 class="section-title">Options</h2>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="soundEffects" checked>
+                        <label for="soundEffects">Enable Sound Effects</label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <label for="soundPack">Sound Pack:</label>
+                        <select id="soundPack">
+                            <option value="retro">Retro Beeps</option>
+                            <option value="glitch">Glitchy Static</option>
+                            <option value="mystical">Mystical Chimes</option>
+                        </select>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="saveHistory" checked>
+                        <label for="saveHistory">Save Prediction History</label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="glitchEffect" checked>
+                        <label for="glitchEffect">Enable Glitch Effect</label>
+                    </div>
+                    
+                    <div class="theme-buttons">
+                        <button class="theme-btn theme-default" data-theme="default">Default</button>
+                        <button class="theme-btn theme-retro" data-theme="retro">Retro</button>
+                        <button class="theme-btn theme-vaporwave" data-theme="vaporwave">Vaporwave</button>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="predictBtn">
+                <i class="fas fa-bolt"></i> Generate Prediction
+            </button>
+            
+            <div class="decoration">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            
+            <div class="loading-container">
+                <div id="loading">Ready to predict... <span class="emoji">🔮</span></div>
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+            </div>
+            
+            <div id="result">Your prediction will appear here...</div>
+            
+            <div class="action-buttons" id="actionButtons" style="display: none;">
+                <button class="action-btn replay-btn" id="replayBtn">
+                    <i class="fas fa-redo"></i> Predict Again
+                </button>
+                <button class="action-btn share-btn" id="shareBtn">
+                    <i class="fas fa-share-alt"></i> Share Text
+                </button>
+                <button class="action-btn image-btn" id="imageBtn">
+                    <i class="fas fa-image"></i> Copy as Image
+                </button>
+            </div>
+            
+            <div class="history-container">
+                <h2 class="history-title">Prediction History</h2>
+                <div id="history">
+                    <p class="history-item">No predictions yet. Generate one to see it here!</p>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>© 2023 Ultimate Year Predictor Pro | For entertainment purposes only | Not responsible for inaccurate predictions</p>
+        </footer>
+    </div>
+
+    <!-- Custom Alert Box -->
+    <div class="alert-overlay" id="alertOverlay">
+        <div class="alert-box">
+            <h3 class="alert-title" id="alertTitle">Alert</h3>
+            <p class="alert-message" id="alertMessage">This is an alert message.</p>
+            <div class="alert-buttons">
+                <button class="alert-button alert-confirm" id="alertConfirm">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Box -->
+    <div class="notification" id="notification">
+        <p class="notification-message" id="notificationMessage">Notification message</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const yearInput = document.getElementById('yearInput');
+            const predictBtn = document.getElementById('predictBtn');
+            const loadingElement = document.getElementById('loading');
+            const progressElement = document.getElementById('progress');
+            const resultElement = document.getElementById('result');
+            const historyElement = document.getElementById('history');
+            const modeButtons = document.querySelectorAll('.mode-btn');
+            const replayBtn = document.getElementById('replayBtn');
+            const shareBtn = document.getElementById('shareBtn');
+            const imageBtn = document.getElementById('imageBtn');
+            const actionButtons = document.getElementById('actionButtons');
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            const alertOverlay = document.getElementById('alertOverlay');
+            const alertTitle = document.getElementById('alertTitle');
+            const alertMessage = document.getElementById('alertMessage');
+            const alertConfirm = document.getElementById('alertConfirm');
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notificationMessage');
+            
+            // Set current year as placeholder
+            yearInput.placeholder = `e.g., ${new Date().getFullYear()}`;
+            
+            // Prediction modes
+            let currentMode = 'funny';
+            
+            // Loading messages for different modes with emojis
+            const loadingMessages = {
+                funny: [
+                    "Consulting the time turtles... 🐢",
+                    "Asking the oracle hamster... 🐹",
+                    "Divining from tea leaves... 🍵",
+                    "Bribing the time lords... 👽",
+                    "Reading chicken entrails... 🐔",
+                    "Asking a magic 8-ball... 🎱",
+                    "Interpreting dreams... 💤",
+                    "Checking with my psychic friend... 🔮",
+                    "Asking the crystal ball... ⚗️",
+                    "Searching the akashic records... 📜"
+                ],
+                sciFi: [
+                    "Scanning temporal anomalies... 📡",
+                    "Reversing the polarity... ⚡",
+                    "Calculating quantum fluctuations... ⚛️",
+                    "Analyzing time vortex... 🌌",
+                    "Calibrating flux capacitor... ⏱️",
+                    "Warping spacetime continuum... 🌀",
+                    "Accessing multidimensional database... 💾",
+                    "Syncing with parallel universes... 🌐",
+                    "Bypassing temporal firewall... 🔒",
+                    "Downloading future data packets... 📲"
+                ],
+                historical: [
+                    "Dusting off ancient scrolls... 📜",
+                    "Consulting historical records... 🏛️",
+                    "Carbon dating artifacts... ⏳",
+                    "Translating hieroglyphics... 𓀀",
+                    "Excavating time capsules... 🪙",
+                    "Interviewing historical figures... 👴",
+                    "Deciphering ancient prophecies... 🔍",
+                    "Authenticating relics... 🏺",
+                    "Cross-referencing timelines... 📊",
+                    "Restoring damaged manuscripts... ✍️"
+                ],
+                absurd: [
+                    "Asking Shrek for advice... 🧅",
+                    "Consulting with dancing lobsters... 🦞",
+                    "Reading memes from the future... 😂",
+                    "Asking cats about world domination... 🐈",
+                    "Decoding alien TikTok trends... 👽",
+                    "Interpreting dreams about cheese... 🧀",
+                    "Consulting the flying spaghetti monster... 🍝",
+                    "Asking pigeons for city secrets... 🕊️",
+                    "Reading tea leaves in boba... 🧋",
+                    "Asking squirrels about nut economics... 🐿️"
+                ],
+                apocalypse: [
+                    "Monitoring zombie outbreaks... 🧟",
+                    "Tracking volcanic activity... 🌋",
+                    "Scanning for asteroid impacts... ☄️",
+                    "Monitoring AI uprising... 🤖",
+                    "Testing for zombie virus variants... 🦠",
+                    "Tracking climate catastrophe... 🌡️",
+                    "Monitoring supervolcano activity... 🌋",
+                    "Scanning for alien invasions... 👽",
+                    "Predicting robot rebellions... ⚙️",
+                    "Monitoring pandemic outbreaks... 😷"
+                ],
+                wholesome: [
+                    "Counting puppy cuddles... 🐶",
+                    "Measuring kindness levels... 💖",
+                    "Tracking rainbow appearances... 🌈",
+                    "Counting smiles worldwide... 😊",
+                    "Measuring friendship power... 👭",
+                    "Tracking unicorn sightings... 🦄",
+                    "Counting random acts of kindness... 🤗",
+                    "Measuring happiness waves... ✨",
+                    "Tracking cookie distributions... 🍪",
+                    "Counting baby animal births... 🐣"
+                ]
+            };
+            
+            // Random predictions for different modes
+            const predictions = {
+                funny: [
+                    "The next year is actually 12,742 BC. Mammoths rule the Earth!",
+                    "My calculations show the next year is 3025. Robot overlords incoming!",
+                    "According to my sources, next year is 1066. William is about to conquer England!",
+                    "The temporal vortex says: 1,000,000 AD. Hope you like cockroach overlords!",
+                    "I'm getting... 1492. Someone's about to sail the ocean blue!",
+                    "The stars align for... 79 AD. Might want to avoid Pompeii!",
+                    "My magic dice say: 1912. That ship might have iceberg problems!",
+                    "The next year is clearly 2200. Flying cars finally arrive!",
+                    "I see... 1776. Something revolutionary is about to happen!",
+                    "The time continuum suggests: 2525. If man is still alive..."
+                ],
+                sciFi: [
+                    "The next year is 2257. Mars has been colonized!",
+                    "My sensors detect... 3050. Human-AI hybrids now exist!",
+                    "According to my calculations, next year is 4021. Time travel is now a tourist activity!",
+                    "The temporal anomaly shows: 12,021. Humans have evolved into energy beings!",
+                    "I'm reading... 2800. Quantum teleportation is now the primary mode of transport!",
+                    "The data suggests: 3500. Dyson sphere construction is underway!",
+                    "My prediction: 2105. First contact with extraterrestrial life!",
+                    "The next year is 5012. Humans have uploaded their consciousness to the cloud!",
+                    "Analysis complete: 6000. The Andromeda galaxy has been reached!",
+                    "Result: 9000. Universe expansion is slowing, preparing for the Big Crunch!"
+                ],
+                historical: [
+                    "The next year is 476 AD. The Western Roman Empire has fallen!",
+                    "My research indicates: 1215. The Magna Carta is being signed!",
+                    "According to records, next year is 1347. The Black Death is spreading!",
+                    "The timeline shows: 1453. Constantinople has fallen to the Ottomans!",
+                    "I'm finding... 1517. Martin Luther is posting his 95 Theses!",
+                    "The data suggests: 1776. The American Declaration of Independence is being signed!",
+                    "My analysis: 1789. The French Revolution begins!",
+                    "The next year is 1914. World War I has just started!",
+                    "Research complete: 1929. The Wall Street Crash is happening!",
+                    "Result: 1969. Apollo 11 is landing on the moon!"
+                ],
+                absurd: [
+                    "The next year is 42,069. The meaning of life has been discovered: it's pizza!",
+                    "My calculations show the next year is 20,000. Shrek has been elected president of Mars!",
+                    "According to my sources, next year is 7,777. Cats have taken over the United Nations!",
+                    "The temporal vortex says: 99,999. The world is now made of cheese!",
+                    "I'm getting... 13,370. The hacker world has taken over!",
+                    "The stars align for... 8,008. Boaty McBoatface is now an interstellar spacecraft!",
+                    "My magic dice say: 1234. The numbers have aligned for universal harmony!",
+                    "The next year is clearly 6000. Everyone communicates exclusively through memes!",
+                    "I see... 9,001. It's over 9000!!!",
+                    "The time continuum suggests: 50,000. Humans have evolved to have a third arm for holding phones!"
+                ],
+                apocalypse: [
+                    "The next year is 2038. The zombie apocalypse begins!",
+                    "My calculations show the next year is 2049. AI has surpassed human intelligence and is not happy!",
+                    "According to my sources, next year is 2029. An asteroid barely misses Earth!",
+                    "The temporal vortex says: 2050. Climate change has made most coastal cities uninhabitable!",
+                    "I'm getting... 2077. Cyberpunk dystopia is now a reality!",
+                    "The stars align for... 2042. The robot uprising begins!",
+                    "My magic dice say: 2035. A supervolcano eruption changes the global climate!",
+                    "The next year is clearly 2066. Nuclear winter has arrived!",
+                    "I see... 2088. Alien invaders have arrived and they're not friendly!",
+                    "The time continuum suggests: 2100. The last humans leave Earth for Mars colonies!"
+                ],
+                wholesome: [
+                    "The next year is 2030. World peace has been achieved!",
+                    "My calculations show the next year is 2045. Free ice cream for everyone, every day!",
+                    "According to my sources, next year is 2025. Puppies and kittens become freely available to all!",
+                    "The temporal vortex says: 2055. Everyone gets a unicorn for their birthday!",
+                    "I'm getting... 2033. Rainbows appear every day all around the world!",
+                    "The stars align for... 2028. Everyone discovers their true passion in life!",
+                    "My magic dice say: 2040. All diseases have been eradicated!",
+                    "The next year is clearly 2060. World hunger is solved with replicator technology!",
+                    "I see... 2070. Humanity achieves immortality through advanced medicine!",
+                    "The time continuum suggests: 2080. Everyone finds their perfect soulmate!"
+                ]
+            };
+            
+            // Fortune cookie messages
+            const fortunes = [
+                "Also, you will step on LEGO tomorrow.",
+                "Beware of squirrels plotting world domination.",
+                "Your future contains questionable fashion choices.",
+                "A talking pet is in your future. Probably just your imagination though.",
+                "You will soon find something you lost. It's under the couch.",
+                "A mysterious stranger will offer you pizza. Accept it.",
+                "Your Netflix binge will be longer than expected.",
+                "The meaning of life is 42. You're welcome.",
+                "You will receive a mysterious package. It's just Amazon.",
+                "A bird will poop on you next Tuesday. Sorry."
+            ];
+            
+            // Easter egg predictions for specific years
+            const easterEggs = {
+                1337: "You unlocked hacker mode! 1t'5 0NLY 4 M4TT3R 0F T1M3 B3F0R3 7H3 R0B07S T4K3 0V3R!",
+                666: "The next year is 666. The number of the beast! Spooky scary skeletons everywhere!",
+                1984: "Big Brother is watching you! The next year is still 1984. You're stuck in a time loop!",
+                2020: "The next year is... 2020 again! Just kidding, no one wants that. Actually it's 2020 Part 2: Electric Boogaloo.",
+                3000: "The next year is 3000. Not much has changed but they live underwater. And your great-great-great-granddaughter is pretty fine.",
+                42: "The next year is 42. You finally found the answer to life, the universe, and everything!",
+                1492: "The next year is 1492. Columbus sails the ocean blue! Try not to colonize anything.",
+                1969: "The next year is 1969. One small step for man, one giant leap for mankind!",
+                2000: "The next year is 2000. Y2K didn't end the world after all! The computers are fine. Probably.",
+                1776: "The next year is 1776. 'Murica! Declaration of Independence happening!",
+                2021: "The next year is 2021. Wait, we already did this year. Let me check my notes...",
+                9999: "The next year is 9999. Congratulations, you broke the time continuum!"
+            };
+            
+            // Set up mode buttons
+            modeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    modeButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    currentMode = this.getAttribute('data-mode');
+                });
+            });
+            
+            // Theme buttons
+            themeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    document.body.className = '';
+                    if (theme !== 'default') {
+                        document.body.classList.add(theme + '-terminal');
+                    }
+                });
+            });
+            
+            // Replay button
+            replayBtn.addEventListener('click', function() {
+                resultElement.textContent = "Your prediction will appear here...";
+                actionButtons.style.display = 'none';
+                yearInput.value = '';
+                yearInput.focus();
+            });
+            
+            // Share button
+            shareBtn.addEventListener('click', function() {
+                const predictionText = resultElement.textContent;
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'My Weird Year Prediction',
+                        text: predictionText,
+                        url: window.location.href
+                    })
+                    .catch(error => {
+                        console.log('Sharing failed', error);
+                        copyToClipboard(predictionText);
+                    });
+                } else {
+                    copyToClipboard(predictionText);
+                }
+            });
+            
+            // Image button
+            imageBtn.addEventListener('click', function() {
+                html2canvas(resultElement).then(canvas => {
+                    canvas.toBlob(function(blob) {
+                        const item = new ClipboardItem({ "image/png": blob });
+                        navigator.clipboard.write([item]).then(function() {
+                            showNotification('Prediction copied as image to clipboard!');
+                        }, function(error) {
+                            console.error('Could not copy image: ', error);
+                            showAlert('Image Copy Failed', 'Failed to copy image to clipboard. Try using a different browser.');
+                        });
+                    });
+                });
+            });
+            
+            // Custom alert function
+            function showAlert(title, message) {
+                alertTitle.textContent = title;
+                alertMessage.textContent = message;
+                alertOverlay.classList.add('active');
+                
+                // Play alert sound
+                playSound('glitch');
+            }
+            
+            // Custom notification function
+            function showNotification(message, duration = 3000) {
+                notificationMessage.textContent = message;
+                notification.classList.add('active');
+                
+                // Play notification sound
+                playSound('beep');
+                
+                // Auto hide after duration
+                setTimeout(() => {
+                    notification.classList.remove('active');
+                }, duration);
+            }
+            
+            // Close alert when confirm button is clicked
+            alertConfirm.addEventListener('click', function() {
+                alertOverlay.classList.remove('active');
+            });
+            
+            function copyToClipboard(text) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                
+                showNotification('Prediction copied to clipboard!');
+            }
+            
+            function playSound(effect) {
+                if (!document.getElementById('soundEffects').checked) return;
+                
+                const soundPack = document.getElementById('soundPack').value;
+                
+                // Simple sound effects using the Web Audio API
+                try {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    if (soundPack === 'retro') {
+                        if (effect === 'beep') {
+                            oscillator.type = 'sine';
+                            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                            oscillator.start();
+                            oscillator.stop(audioContext.currentTime + 0.1);
+                        } else if (effect === 'glitch') {
+                            oscillator.type = 'sawtooth';
+                            oscillator.frequency.setValueAtTime(100, audioContext.currentTime);
+                            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                            oscillator.start();
+                            oscillator.frequency.exponentialRampToValueAtTime(1000, audioContext.currentTime + 0.1);
+                            oscillator.stop(audioContext.currentTime + 0.2);
+                        }
+                    } else if (soundPack === 'glitch') {
+                        if (effect === 'beep') {
+                            oscillator.type = 'square';
+                            oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+                            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                            oscillator.start();
+                            
+                            // Create a glitchy effect with frequency modulation
+                            for (let i = 0; i < 5; i++) {
+                                oscillator.frequency.setValueAtTime(
+                                    200 + Math.random() * 800, 
+                                    audioContext.currentTime + i * 0.05
+                                );
+                            }
+                            
+                            oscillator.stop(audioContext.currentTime + 0.25);
+                        } else if (effect === 'glitch') {
+                            oscillator.type = 'sawtooth';
+                            oscillator.frequency.setValueAtTime(50, audioContext.currentTime);
+                            gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                            oscillator.start();
+                            
+                            // More intense glitch effect
+                            for (let i = 0; i < 10; i++) {
+                                oscillator.frequency.setValueAtTime(
+                                    50 + Math.random() * 1000, 
+                                    audioContext.currentTime + i * 0.02
+                                );
+                            }
+                            
+                            oscillator.stop(audioContext.currentTime + 0.2);
+                        }
+                    } else if (soundPack === 'mystical') {
+                        if (effect === 'beep') {
+                            oscillator.type = 'sine';
+                            oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+                            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                            oscillator.start();
+                            
+                            // Chime-like effect
+                            oscillator.frequency.exponentialRampToValueAtTime(880, audioContext.currentTime + 0.3);
+                            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                            
+                            oscillator.stop(audioContext.currentTime + 0.3);
+                        } else if (effect === 'glitch') {
+                            oscillator.type = 'sine';
+                            oscillator.frequency.setValueAtTime(220, audioContext.currentTime);
+                            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                            oscillator.start();
+                            
+                            // Mystical glitch effect
+                            oscillator.frequency.setValueAtTime(330, audioContext.currentTime + 0.1);
+                            oscillator.frequency.setValueAtTime(440, audioContext.currentTime + 0.2);
+                            
+                            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                            oscillator.stop(audioContext.currentTime + 0.3);
+                        }
+                    }
+                } catch (e) {
+                    console.log('Sound effects not supported', e);
+                }
+            }
+            
+            function predictYear() {
+                const input = yearInput.value;
+                
+                if(!input) {
+                    showAlert('Input Required', 'Please enter a year first!');
+                    return;
+                }
+                
+                // Check for Easter eggs
+                if (easterEggs[input]) {
+                    resultElement.textContent = easterEggs[input];
+                    addFortune();
+                    actionButtons.style.display = 'flex';
+                    
+                    // Save to history if enabled
+                    if (document.getElementById('saveHistory').checked) {
+                        addToHistory(input, resultElement.textContent);
+                    }
+                    
+                    return;
+                }
+                
+                // Clear previous results
+                resultElement.textContent = "";
+                
+                // Show loading animation
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 15;
+                    if (progress > 100) progress = 100;
+                    progressElement.style.width = `${progress}%`;
+                    
+                    // Change loading message every few increments
+                    if (Math.random() < 0.2) {
+                        const messages = loadingMessages[currentMode];
+                        loadingElement.textContent = messages[Math.floor(Math.random() * messages.length)];
+                        playSound('beep');
+                    }
+                    
+                    if (progress === 100) {
+                        clearInterval(interval);
+                        
+                        // Show the "prediction" with typewriter effect
+                        const predictionList = predictions[currentMode];
+                        const randomPrediction = predictionList[Math.floor(Math.random() * predictionList.length)];
+                        
+                        if (document.getElementById('glitchEffect').checked) {
+                            typeWithGlitches(randomPrediction, 0);
+                        } else {
+                            typeText(randomPrediction, 0);
+                        }
+                    }
+                }, 200);
+            }
+            
+            function typeText(text, index) {
+                if (index < text.length) {
+                    resultElement.textContent += text.charAt(index);
+                    setTimeout(() => typeText(text, index + 1), 50);
+                } else {
+                    addFortune();
+                    actionButtons.style.display = 'flex';
+                    
+                    // Save to history if enabled
+                    if (document.getElementById('saveHistory').checked) {
+                        addToHistory(yearInput.value, text);
+                    }
+                }
+            }
+            
+            function typeWithGlitches(text, index) {
+                if (index < text.length) {
+                    // Occasionally glitch out
+                    if (Math.random() < 0.1) {
+                        resultElement.textContent += String.fromCharCode(65 + Math.floor(Math.random() * 58));
+                        setTimeout(() => {
+                            resultElement.textContent = resultElement.textContent.substring(0, index) + text.charAt(index);
+                            typeWithGlitches(text, index + 1);
+                        }, 100);
+                        playSound('glitch');
+                    } else {
+                        resultElement.textContent += text.charAt(index);
+                    }
+                    
+                    setTimeout(() => typeWithGlitches(text, index + 1), 80);
+                } else {
+                    addFortune();
+                    actionButtons.style.display = 'flex';
+                    
+                    // Save to history if enabled
+                    if (document.getElementById('saveHistory').checked) {
+                        addToHistory(yearInput.value, text);
+                    }
+                }
+            }
+            
+            function addFortune() {
+                const fortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+                const fortuneElement = document.createElement('div');
+                fortuneElement.className = 'fortune';
+                fortuneElement.textContent = fortune;
+                resultElement.appendChild(fortuneElement);
+            }
+            
+            function addToHistory(input, prediction) {
+                // Remove the placeholder if it exists
+                if (historyElement.querySelector('p') && historyElement.querySelector('p').textContent.includes('No predictions')) {
+                    historyElement.innerHTML = '';
+                }
+                
+                const historyItem = document.createElement('p');
+                historyItem.className = 'history-item';
+                
+                // Add timestamp
+                const now = new Date();
+                const timestamp = now.toLocaleTimeString();
+                
+                historyItem.textContent = `[${timestamp}] Input: ${input} -> ${prediction.split('.')[0]}.`;
+                
+                historyElement.prepend(historyItem);
+                
+                // Limit history to 10 items
+                if (historyElement.children.length > 10) {
+                    historyElement.removeChild(historyElement.lastChild);
+                }
+            }
+            
+            // Event listeners
+            predictBtn.addEventListener('click', predictYear);
+            
+            yearInput.addEventListener('keypress', function(e) {
+                if(e.key === 'Enter') {
+                    predictYear();
+                }
+            });
+            
+            // Easter egg for typing 1337
+            yearInput.addEventListener('input', function() {
+                if (this.value === '1337') {
+                    setTimeout(() => {
+                        this.value = '';
+                        resultElement.textContent = "H4X0R M0D3 4CT1V4T3D! PR3P4R3 F0R 7H3 ULT1M4T3 PR3D1C7I0N!";
+                        playSound('glitch');
+                    }, 500);
+                } else if (this.value === '666') {
+                    setTimeout(() => {
+                        this.value = '';
+                        resultElement.textContent = "Spooky mode activated! Prepare for a scary prediction!";
+                        playSound('glitch');
+                    }, 500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
